@@ -19,7 +19,8 @@
   "dependencies": {},
   "scripts": {
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "bootstrap": "npx lerna bootstrap",
     "create-component": "node scripts/create-component.js"
   }
 }
