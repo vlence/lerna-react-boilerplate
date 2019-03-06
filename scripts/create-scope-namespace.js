@@ -1,3 +1,4 @@
+// Change this!
 const namespace = '@example-app';
 
 /**
