@@ -2,13 +2,15 @@
   "name": "root",
   "private": true,
   "devDependencies": {
-    "lerna": "^3.13.1",
-    "@storybook/react": "^5.0.0",
+    "@babel/core": "^7.3.4",
     "@storybook/addon-actions": "^5.0.0",
     "@storybook/addon-links": "^5.0.0",
     "@storybook/addons": "^5.0.0",
-    "@babel/core": "^7.3.4",
-    "babel-loader": "^8.0.5"
+    "@storybook/react": "^5.0.0",
+    "babel-loader": "^8.0.5",
+    "lerna": "^3.13.1",
+    "nwb": "^0.23.0",
+    "rimraf": "^2.6.3"
   },
   "workspaces": [
     "components/*",
@@ -18,5 +20,6 @@
   "scripts": {
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
+    "create-component": "node scripts/create-component.js"
   }
 }
