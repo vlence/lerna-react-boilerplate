@@ -3,6 +3,8 @@ const path = require('path');
 const readline = require('readline');
 
 const runCommand = require('./run-command');
+
+// Identify all components by scope @example-app-components
 const namespace = require('./create-scope-namespace')('components');
 
 const rl = readline.createInterface({
