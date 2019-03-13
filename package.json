@@ -9,6 +9,10 @@
     "@storybook/addons": "^5.0.0",
     "@storybook/react": "^5.0.0",
     "babel-loader": "^8.0.5",
+    "debug": "^4.1.1",
+    "eslint": "^5.15.1",
+    "eslint-plugin-react": "^7.12.4",
+    "jest": "^24.5.0",
     "lerna": "^3.13.1",
     "nwb": "^0.23.0",
     "rimraf": "^2.6.3"
@@ -22,6 +26,8 @@
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "bootstrap": "npx lerna bootstrap",
-    "create-component": "node scripts/create-component.js"
+    "create-component": "node scripts/create-component.js",
+    "create-next-app": "node scripts/create-next-app.js",
+    "test": "jest"
   }
 }
