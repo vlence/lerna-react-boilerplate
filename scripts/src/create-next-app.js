@@ -89,12 +89,10 @@ const createPagesDir = name => {
 const createIndexFile = name => {
   const app = getAppDir(name);
   const file = `${app}/pages/index.js`;
-  const contents = `
-import React from 'react';
-
-const Home = () => <h1>Hello world!</h1>;
-export default Home;
-`.trim();
+  const contents = [
+    'const Home = () => <h1>Hello, world!</h1>;',
+    'export default Home;'
+  ].join('\n');
 
   return new Promise((resolve, reject) => {
     fs.writeFile(file, contents, err => {
