@@ -2,10 +2,10 @@ const runCommand = require('./run-command');
 const rimraf = require('rimraf');
 const path = require('path');
 
-const root = path.resolve(__dirname, '..');
+const root = require('./root');
 
 /**
- * Permanent remove the given directory.
+ * Permanently remove the given directory.
  * 
  * @param {string} dir The directory to remove
  * @returns {Promise}
