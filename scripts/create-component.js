@@ -2,6 +2,7 @@ const rimraf = require('rimraf').sync;
 const path = require('path');
 const readline = require('readline');
 
+const runLernaCreate = require('./run-lerna-create');
 const runCommand = require('./run-command');
 
 // Identify all components by scope @example-app-components
@@ -25,19 +26,6 @@ const runNwbNewReactComponent = name => {
   const cwd = path.resolve(root, 'components');
   const command = `npx nwb new react-component ${name} -f --no-git`;
   const options = {cwd};
-
-  return runCommand(command, options);
-};
-
-/**
- * Runs the `lerna create` command.
- * 
- * @param {string} name Name of the component
- * @returns {Promise}
- */
-const runLernaCreate = name => {
-  const command = `npx lerna create ${namespace}/${name} components --yes`;
-  const options = {cwd: root};
 
   return runCommand(command, options);
 };
@@ -88,7 +76,7 @@ const install = name => {
 rl.question('Component Name: ', async name => {
   try {
     await runNwbNewReactComponent(name);
-    await runLernaCreate(name);
+    await runLernaCreate(`${namespace}/${name}`, 'components');
 
     removeLernaCreateArtifacts(name);
     deleteNodeModules(name);
