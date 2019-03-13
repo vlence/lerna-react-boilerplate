@@ -59,9 +59,32 @@ Because we're using Yarn Workspaces, packages are automatically installed to the
 
 # Creating apps
 
-All apps go in the `apps` directory. Use Gatsby, Next.js, create-react-app, whatever you are most comfortable with. Just make sure that dependencies are being installed using yarn. If they're not, or you're not sure that they are, simply delete the `node_modules` directory after your app has been bootstrapped and run `yarn install`.
+All apps go in the `apps` directory. We have helper scripts to easily create React apps. You'll be asked to give your app a name.
 
-# How do I use components from within apps?
+## Next.js
+
+Run the following to create a Next.js app:
+
+```bash
+$ yarn create-next-app
+App Name: awesome-app
+```
+
+## Others
+
+If you need to create apps using other React frameworks or tooling then follow the following steps.
+
+1. Bootstrap a new app using lerna.
+
+    ```bash
+    $ npx lerna create @my-project-apps/awesome-app apps --yes # make sure the scope is correct
+    ```
+
+    This will create a new folder `awesome-app` inside `apps`.
+
+2. Setup your app as needed.
+
+# How do I add my components to my apps?
 
 You need to summon the secret powers of the underw...
 
@@ -104,15 +127,17 @@ This will launch the storybook console in your browser. Storybook looks for `.st
 
 The workflow isn't the smoothest right now. This is essentially how you will be working:
 
-1. Create a new component using `yarn create-component`
-2. Run `yarn storybook` and test your component
-3. Build your component
-4. Add it to your app's `package.json`
-5. Run `yarn bootstrap`
-6. Run app
-7. Repeat (skip steps 4 and 5 when updating components)
+1. Create apps using our helper scripts or do it manually
+2. Create React components using `yarn create-component`
+3. Run `yarn storybook` and test your components
+4. Build your components
+5. Add it to your app's `package.json`
+6. Run `yarn bootstrap`
+7. Run app
+
+Repeat steps 3, 4 and 7 while updating and testing components within apps.
 
 # Todo
 
 1. Hot reload across workspaces(?)
-2. Scripts to create apps (Gatsby, Next.js, create-react-app)
+2. Scripts to create apps (Gatsby, create-react-app)
