@@ -48,7 +48,7 @@ const removeArtifacts = (name, dir) => {
  * 
  * @returns {Promise}
  */
-const runLernaCreate = (namespace, name, dir) => {
+const lernaCreate = (namespace, name, dir) => {
   const command = !namespace ?
     `npx lerna create ${name} ${dir} --yes`:
     `npx lerna create ${namespace}/${name} ${dir} --yes`;
@@ -58,4 +58,4 @@ const runLernaCreate = (namespace, name, dir) => {
     .then(() => removeArtifacts(name, dir));
 };
 
-module.exports = runLernaCreate;
+module.exports = lernaCreate;
