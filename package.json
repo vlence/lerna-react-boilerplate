@@ -9,6 +9,7 @@
     "@storybook/addons": "^5.0.0",
     "@storybook/react": "^5.0.0",
     "babel-loader": "^8.0.5",
+    "eslint": "^5.15.1",
     "lerna": "^3.13.1",
     "nwb": "^0.23.0",
     "rimraf": "^2.6.3"
