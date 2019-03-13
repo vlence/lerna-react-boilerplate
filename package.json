@@ -27,6 +27,7 @@
     "build-storybook": "build-storybook",
     "bootstrap": "npx lerna bootstrap",
     "create-component": "node scripts/create-component.js",
+    "create-next-app": "node scripts/create-next-app.js",
     "test": "jest"
   }
 }
