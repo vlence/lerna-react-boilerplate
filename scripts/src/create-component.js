@@ -61,6 +61,12 @@ const install = name => {
   return runCommand(command, options);
 };
 
+/**
+ * Creates a new component.
+ * 
+ * @param {string} name Name of the component
+ * @returns {Promise}
+ */
 const createComponent = async name => {
   await runNwbNewReactComponent(name);
   await runLernaCreate(namespace, name, 'components');
