@@ -1,12 +1,12 @@
 const rimraf = require('rimraf');
 const path = require('path');
 
-const runLernaCreate = require('./run-lerna-create');
-const runCommand = require('./run-command');
-const root = require('./root');
+const runLernaCreate = require('./common/run-lerna-create');
+const runCommand = require('./common/run-command');
+const root = require('./common/rooton/root');
 
 // Identify all components by scope @example-app-components
-const namespace = require('./create-scope-namespace')('components');
+const namespace = require('./common/create-scope-namespace')('components');
 
 /**
  * Runs the `nwb new react-component` command in the

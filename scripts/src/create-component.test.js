@@ -1,6 +1,6 @@
 const createComponent = require('./create-component');
 const rimraf = require('rimraf');
-const root = require('./root');
+const root = require('./common/root');
 const path = require('path');
 
 const componentName = 'test';
