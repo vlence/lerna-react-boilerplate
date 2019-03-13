@@ -3,7 +3,7 @@ const path = require('path');
 
 const lernaCreate = require('./common/lerna-create');
 const runCommand = require('./common/run-command');
-const root = require('./common/rooton/root');
+const root = require('./common/root');
 
 // Identify all components by scope @example-app-components
 const namespace = require('./common/create-scope-namespace')('components');
