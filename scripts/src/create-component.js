@@ -1,7 +1,7 @@
 const rimraf = require('rimraf');
 const path = require('path');
 
-const runLernaCreate = require('./common/run-lerna-create');
+const lernaCreate = require('./common/lerna-create');
 const runCommand = require('./common/run-command');
 const root = require('./common/rooton/root');
 
@@ -15,7 +15,7 @@ const namespace = require('./common/create-scope-namespace')('components');
  * @param {string} name Name of the component
  * @returns {Promise}
  */
-const runNwbNewReactComponent = name => {
+const newReactComponent = name => {
   const cwd = path.resolve(root, 'components');
   const command = `npx nwb new react-component ${name} -f --no-git`;
   const options = {cwd};
@@ -68,8 +68,8 @@ const install = name => {
  * @returns {Promise}
  */
 const createComponent = async name => {
-  await runNwbNewReactComponent(name);
-  await runLernaCreate(namespace, name, 'components');
+  await newReactComponent(name);
+  await lernaCreate(namespace, name, 'components');
 
   await deleteNodeModules(name);
   await install(name);
