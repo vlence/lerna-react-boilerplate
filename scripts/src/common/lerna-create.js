@@ -1,22 +1,42 @@
 const runCommand = require('./run-command');
 const rimraf = require('rimraf');
 const path = require('path');
+const fs = require('fs');
 
 const root = require('./root');
 
 /**
- * Permanently remove the given directory.
+ * Permanently remove the given file or directory.
  * 
- * @param {string} dir The directory to remove
+ * @param {string} fileOrDir The directory to remove
  * @returns {Promise}
  */
-const remove = dir => new Promise((resolve, reject) =>
-  rimraf(dir, err => {
+const remove = fileOrDir => new Promise((resolve, reject) =>
+  fs.lstat(fileOrDir, (err, stats) => {
     if (err) {
       reject(err);
     }
     else {
-      resolve();
+      if (stats.isDirectory()) {
+        rimraf(fileOrDir, err => {
+          if (err) {
+            reject(err);
+          }
+          else {
+            resolve();
+          }
+        });
+      }
+      else {
+        fs.unlink(fileOrDir, err => {
+          if (err) {
+            reject(err);
+          }
+          else {
+            resolve();
+          }
+        });
+      }
     }
   }));
 
@@ -31,10 +51,12 @@ const removeArtifacts = (name, dir) => {
   const packageDir = path.resolve(root, dir, name);
   const tests = path.resolve(packageDir, '__tests__');
   const lib = path.resolve(packageDir, 'lib');
+  const readme = path.resolve(packageDir, 'README.md');
 
   return Promise.all([
     remove(tests),
-    remove(lib)
+    remove(lib),
+    remove(readme)
   ]);
 };
 
