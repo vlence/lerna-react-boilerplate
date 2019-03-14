@@ -14,7 +14,7 @@ const file = path.resolve(common, 'scope-namespace.js');
 const namespace = '@test';
 
 describe('add-scope-namespace', () => {
-  it('should throw when namespace does not start with "@"', () => {
+  it('should throw when scope does not start with "@"', () => {
     expect(addScopeNamespace('test')).rejects.toThrow();
   });
 
