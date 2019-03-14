@@ -1,22 +1,27 @@
-const createNextApp = require('./create-next-app');
-const rimraf = require('rimraf');
+const promisify = require('util').promisify;
+const rimraf = promisify(require('rimraf'));
+
 const root = require('./common/root');
 const path = require('path');
 
+const addScopeNamespace = require('./add-scope-namespace');
+const removeProjectScope = require('./remove-project-scope');
+
 const appName = 'test';
+
+beforeAll(() => addScopeNamespace('@test'));
+afterAll(removeProjectScope);
 
 jest.setTimeout(1000*60*2);
 describe('create-next-app', () => {
-  it('should create Next.js app', () => createNextApp(appName));
   
-  afterAll(() => new Promise((resolve, reject) => {
-    rimraf(path.resolve(root, 'apps', appName), err => {
-      if (err) {
-        reject(err);
-      }
-      else {
-        resolve();
-      }
-    });
-  }));
+  let createNextApp;
+  beforeAll(() => createNextApp = require('./create-next-app'));
+  afterAll(() => rimraf(path.resolve(root, 'apps', appName)));
+
+  it('should fail with invalid name', () => {
+    expect(createNextApp('invalid!')).rejects.toThrow();
+  });
+
+  it('should create Next.js app', () => createNextApp(appName));
 });

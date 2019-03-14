@@ -1,5 +1,7 @@
-const fs = require('fs');
 const path = require('path');
+const promisify = require('util').promisify;
+const writeFile = promisify(require('fs').writeFile);
+
 const root = require('./common/root');
 
 /**
@@ -18,16 +20,7 @@ const addScopeNamespace = async namespace => {
   const file = path.resolve(common, 'scope-namespace.js');
   const contents = `module.exports = '${namespace}';`;
 
-  return new Promise((resolve, reject) => {
-    fs.writeFile(file, contents, err => {
-      if (err) {
-        reject(err);
-      }
-      else {
-        resolve();
-      }
-    });
-  });
+  return writeFile(file, contents);
 };
 
 module.exports = addScopeNamespace;
