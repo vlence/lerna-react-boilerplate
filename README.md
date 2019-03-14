@@ -9,18 +9,28 @@ The latest stable versions should do just fine.
 # Get started
 
 1. Clone this repo
-2. Create directory `components`.
-3. Create directory `apps`.
-4. Change your project namespace in `scripts/create-scope-namespace.js`. This namespace is used whenever you create components.
+2. Install dependencies
+    ```bash
+    $ yarn install
+    ```
 
-    ```javascript
-    // Change this!
-    const namespace = '@example-app';
+3. Create directory `components`.
+4. Create directory `apps`.
+5. Set your project scope
+    ```bash
+    $ yarn add-scope-namespace
+    Scope Namespace: @my-project
+
+    # or
+
+    $ yarn add-scope-namespace "@my-project"
     ```
 
 # Creating apps
 
 All apps go in the `apps` directory. We have helper scripts to easily create React apps. You'll be asked to give your app a name.
+
+By default all your apps will be namespaced using your project's scope. For example if your project scope is `@my-project` then all your apps should be/will be under `@my-project-apps` by default.
 
 ## Next.js
 
@@ -28,18 +38,7 @@ Run the following to create a Next.js app:
 
 ```bash
 $ yarn create-next-app
-```
-
-DO NOT USE SCOPES! Add your scope in `create-scope-namespace.js`.
-
-```bash
-$ yarn create-next-app
-App Name: @my-project-apps/awesome-app # bad
-```
-
-```bash
-$ yarn create-next-app
-App Name: awesome-app # good
+App Name: awesome-app
 ```
 
 ## Others
@@ -64,23 +63,12 @@ To create a new React component run the following:
 
 ```bash
 $ yarn create-component
+Component Name: awesome-button
 ```
 
-You will be asked to give your component a name.
+By default all your components will be namespaced using your project's scope. For example if your project scope is `@my-project` then all your components should be/will be under `@my-project-components` by default.
 
-DO NOT USE SCOPES! Set the scope using `create-scope-namespace.js`.
-
-```bash
-$ yarn create-component
-Component Name: @my-project-components/awesome-button # bad
-```
-
-```bash
-$ yarn create-component
-Component Name: awesome-button # good
-```
-
-See `scripts/create-component.js` for an example.
+If you want to change the default then edit `scripts/src/create-component`.
 
 ```javascript
 // Identify all components by scope @example-app-components
