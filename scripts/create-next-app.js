@@ -6,14 +6,18 @@ const rl = readline.createInterface({
   output: process.stdout
 });
 
-rl.question('App Name: ', async name => {
-  try {
-    await createNextApp(name);
+const getName = () => {
+  if (process.argv[2]) {
+    return Promise.resolve(process.argv[2]);
   }
-  catch (e) {
-    console.error(e);
+  else {
+    return new Promise(resolve => {
+      rl.question('App Name: ', resolve);
+    });
   }
-  finally {
-    rl.close();
-  }
-});
+};
+
+getName()
+  .then(createNextApp)
+  .catch(console.error)
+  .then(() => rl.close());

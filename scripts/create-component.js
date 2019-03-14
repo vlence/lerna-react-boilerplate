@@ -6,14 +6,18 @@ const rl = readline.createInterface({
   output: process.stdout
 });
 
-rl.question('Component Name: ', async name => {
-  try {
-    await createComponent(name);
+const getName = () => {
+  if (process.argv[2]) {
+    return Promise.resolve(process.argv[2]);
   }
-  catch (e) {
-    console.error(e);
+  else {
+    return new Promise(resolve => {
+      rl.question('Component Name: ', resolve);
+    });
   }
-  finally {
-    rl.close();
-  }
-});
+};
+
+getName()
+  .then(createComponent)
+  .catch(console.error)
+  .then(() => rl.close());

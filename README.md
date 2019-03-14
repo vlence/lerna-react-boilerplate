@@ -18,11 +18,6 @@ The latest stable versions should do just fine.
 4. Create directory `apps`.
 5. Set your project scope
     ```bash
-    $ yarn add-scope-namespace
-    Scope Namespace: @my-project
-
-    # or
-
     $ yarn add-scope-namespace "@my-project"
     ```
 
@@ -37,8 +32,7 @@ By default all your apps will be namespaced using your project's scope. For exam
 Run the following to create a Next.js app:
 
 ```bash
-$ yarn create-next-app
-App Name: awesome-app
+$ yarn create-next-app awesome-app
 ```
 
 ## Others
@@ -62,8 +56,7 @@ If you need to create apps using other React frameworks or tooling then follow t
 To create a new React component run the following:
 
 ```bash
-$ yarn create-component
-Component Name: awesome-button
+$ yarn create-component awesome-button
 ```
 
 By default all your components will be namespaced using your project's scope. For example if your project scope is `@my-project` then all your components should be/will be under `@my-project-components` by default.
@@ -143,3 +136,5 @@ Repeat steps 3, 4 and 7 while updating and testing components within apps.
 
 1. Hot reload across workspaces(?)
 2. Scripts to create apps (Gatsby, create-react-app)
+3. Setup script (set scope, namespaces, make directories, install dependencies)
+4. Scripts to reset scope and namespaces
