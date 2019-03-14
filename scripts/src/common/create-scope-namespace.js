@@ -1,5 +1,4 @@
-// Change this!
-const namespace = '@example-app';
+const namespace = require('./scope-namespace');
 
 /**
  * Returns a namespace string, prefixed with
