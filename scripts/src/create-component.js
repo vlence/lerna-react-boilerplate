@@ -4,6 +4,7 @@ const path = require('path');
 const lernaCreate = require('./common/lerna-create');
 const runCommand = require('./common/run-command');
 const root = require('./common/root');
+const isValid = require('./common/is-valid-package-name');
 
 // Identify all components by scope @example-app-components
 const namespace = require('./common/create-scope-namespace')('components');
@@ -68,6 +69,11 @@ const install = name => {
  * @returns {Promise}
  */
 const createComponent = async name => {
+  const packageName = `${namespace}/${name}`;
+  if (!isValid(packageName)) {
+    throw new SyntaxError(`"${packageName}" is not a valid name`);
+  }
+
   await newReactComponent(name);
   await lernaCreate(namespace, name, 'components');
 

@@ -9812,7 +9812,7 @@ number-is-nan@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/number-is-nan/-/number-is-nan-1.0.1.tgz#097b602b53422a522c1afb8790318336941a011d"
 
-nwb@^0.23.0:
+nwb@0.23.x, nwb@^0.23.0:
   version "0.23.0"
   resolved "https://registry.yarnpkg.com/nwb/-/nwb-0.23.0.tgz#038f8e54ea36b3887cecfc8ae5d3aef7b204d75a"
   dependencies:
@@ -11034,7 +11034,7 @@ react-docgen@^3.0.0:
     node-dir "^0.1.10"
     recast "^0.16.0"
 
-react-dom@^16.8.1:
+react-dom@^16.8.1, react-dom@^16.8.4:
   version "16.8.4"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.8.4.tgz#1061a8e01a2b3b0c8160037441c3bf00a0e3bc48"
   dependencies:
@@ -11169,7 +11169,7 @@ react-transform-hmr@1.0.4:
     global "^4.3.0"
     react-proxy "^1.1.7"
 
-react@^16.8.1:
+react@^16.8.1, react@^16.8.4:
   version "16.8.4"
   resolved "https://registry.yarnpkg.com/react/-/react-16.8.4.tgz#fdf7bd9ae53f03a9c4cd1a371432c206be1c4768"
   dependencies:
