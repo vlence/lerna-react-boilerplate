@@ -8,54 +8,15 @@ The latest stable versions should do just fine.
 
 # Get started
 
-1. Create directory `components`.
-2. Create directory `apps`.
-3. Change your project namespace in `scripts/create-scope-namespace.js`. This namespace is used whenever you create components.
+1. Clone this repo
+2. Create directory `components`.
+3. Create directory `apps`.
+4. Change your project namespace in `scripts/create-scope-namespace.js`. This namespace is used whenever you create components.
 
     ```javascript
     // Change this!
     const namespace = '@example-app';
     ```
-
-# Creating React Components
-
-To create a new React component run the following:
-
-```bash
-$ yarn create-component
-```
-
-You will be asked to give your component a name.
-
-DO NOT USE SCOPES! Set the scope using `create-scope-namespace.js`.
-
-```bash
-$ yarn create-component
-Component Name: @my-project/awesome-button # bad
-```
-
-```bash
-$ yarn create-component
-Component Name: awesome-button # good
-```
-
-See `scripts/create-component.js` for an example.
-
-```javascript
-// Identify all components by scope @example-app-components
-const namespace = require('./create-scope-namespace')('components');
-```
-
-# Installing packages
-
-You'll probably need to use other packages after creating your components/apps. Just install them using yarn.
-
-```bash
-$ cd components/awesome-button
-$ yarn add styled-components -P
-```
-
-Because we're using Yarn Workspaces, packages are automatically installed to the root `node_modules`.
 
 # Creating apps
 
@@ -67,7 +28,18 @@ Run the following to create a Next.js app:
 
 ```bash
 $ yarn create-next-app
-App Name: awesome-app
+```
+
+DO NOT USE SCOPES! Add your scope in `create-scope-namespace.js`.
+
+```bash
+$ yarn create-next-app
+App Name: @my-project-apps/awesome-app # bad
+```
+
+```bash
+$ yarn create-next-app
+App Name: awesome-app # good
 ```
 
 ## Others
@@ -84,7 +56,48 @@ If you need to create apps using other React frameworks or tooling then follow t
 
 2. Setup your app as needed.
 
-# How do I add my components to my apps?
+# Components
+
+## Creating React Components
+
+To create a new React component run the following:
+
+```bash
+$ yarn create-component
+```
+
+You will be asked to give your component a name.
+
+DO NOT USE SCOPES! Set the scope using `create-scope-namespace.js`.
+
+```bash
+$ yarn create-component
+Component Name: @my-project-components/awesome-button # bad
+```
+
+```bash
+$ yarn create-component
+Component Name: awesome-button # good
+```
+
+See `scripts/create-component.js` for an example.
+
+```javascript
+// Identify all components by scope @example-app-components
+const namespace = require('./create-scope-namespace')('components');
+```
+
+## Using Storybook
+
+Storybook has already been setup for you. Just run the following in the root directory of your project:
+
+```bash
+$ yarn storybook
+```
+
+This will launch the storybook console in your browser. Storybook looks for `.stories.js` files in your `components` directory.
+
+## Adding your components to your apps
 
 You need to summon the secret powers of the underw...
 
@@ -113,15 +126,16 @@ $ yarn bootstrap
 
 NOTE: You will need to build your component everytime you change it before being able to use it in your app.
 
-# Using Storybook
+# Installing packages
 
-Storybook has already been setup for you. Just run the following in the root directory of your project:
+You'll probably need to use other packages after creating your components/apps. Just install them using yarn.
 
 ```bash
-$ yarn storybook
+$ cd components/awesome-button
+$ yarn add styled-components -P
 ```
 
-This will launch the storybook console in your browser. Storybook looks for `.stories.js` files in your `components` directory.
+Because we're using Yarn Workspaces, packages are automatically installed to the root `node_modules`.
 
 # Development Workflow
 
