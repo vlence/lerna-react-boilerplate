@@ -28,6 +28,7 @@
     "bootstrap": "npx lerna bootstrap",
     "create-component": "node scripts/create-component.js",
     "create-next-app": "node scripts/create-next-app.js",
+    "add-scope-namespace": "node scripts/add-scope-namespace.js",
     "test": "jest"
   }
 }
