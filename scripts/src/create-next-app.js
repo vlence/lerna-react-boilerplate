@@ -1,9 +1,15 @@
+const fs = require('fs');
+const path = require('path');
+const promisify = require('util').promisify;
+
 const lernaCreate = require('./common/lerna-create');
 const runCommand = require('./common/run-command');
-const root = require('./common/root');
-const path = require('path');
-const fs = require('fs');
 const namespace = require('./common/create-scope-namespace')('apps');
+const validate = require('./common/validate-package-name');
+const root = require('./common/root');
+
+const writeFile = promisify(fs.writeFile);
+const mkdir = promisify(fs.mkdir);
 
 /**
  * Gets the directory path for the app.
@@ -46,16 +52,7 @@ const addScripts = name => {
   packageJson.scripts.start = 'next start';
 
   const json = JSON.stringify(packageJson, null, 2);
-  return new Promise((resolve, reject) => {
-    fs.writeFile(file, json, err => {
-      if (err) {
-        reject(err);
-      }
-      else {
-        resolve();
-      }
-    });
-  });
+  return writeFile(file, json);
 };
 
 /**
@@ -67,16 +64,7 @@ const addScripts = name => {
  */
 const createPagesDir = name => {
   const app = getAppDir(name);
-  return new Promise((resolve, reject) => {
-    fs.mkdir(`${app}/pages`, err => {
-      if (err) {
-        reject(err);
-      }
-      else {
-        resolve();
-      }
-    });
-  });
+  return mkdir(`${app}/pages`);
 };
 
 /**
@@ -94,16 +82,7 @@ const createIndexFile = name => {
     'export default Home;'
   ].join('\n');
 
-  return new Promise((resolve, reject) => {
-    fs.writeFile(file, contents, err => {
-      if (err) {
-        reject(err);
-      }
-      else {
-        resolve();
-      }
-    });
-  });
+  return writeFile(file, contents);
 };
 
 /**
@@ -114,6 +93,8 @@ const createIndexFile = name => {
  * @returns {Promise}
  */
 const createNextApp = async name => {
+  validate(`${namespace}/${name}`);
+
   await lernaCreate(namespace, name, 'apps');
   await install(name);
   await addScripts(name);
