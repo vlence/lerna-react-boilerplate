@@ -3,10 +3,10 @@ const promisify = require('util').promisify;
 const path = require('path');
 
 const access = promisify(fs.access);
-const unlink = promisify(fs.unlink);
 const readFile = promisify(fs.readFile);
 
 const addScopeNamespace = require('./add-scope-namespace');
+const removeProjectScope = require('./remove-project-scope');
 const root = require('./common/root');
 const common = path.resolve(root, 'scripts', 'src', 'common');
 const file = path.resolve(common, 'scope-namespace.js');
@@ -27,5 +27,5 @@ describe('add-scope-namespace', () => {
       .then(contents =>
         contents === `module.exports = '${namespace}';`));
 
-  afterAll(() => unlink(file));
+  afterAll(removeProjectScope);
 });
